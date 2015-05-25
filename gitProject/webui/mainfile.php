@@ -263,13 +263,17 @@ function checkCookie($value, $value1, $id)
 	return $ret;
 }
 
-function updatePassword($field, $uid, $oldpass, $newpass, $id)
+function updatePassword($field, $uid, $oldpass, $newpass, $expiretime, $id)
 {
 	$ret = 0;
 
 	if (!empty($newpass)) {
 		$c_newpass = unixcrypt($newpass);
-		$sqlcmd = sprintf("UPDATE user set %s='%s', flags=0 WHERE uid='%s' AND ENCRYPT('%s',password)=password", $field, $c_newpass, $uid, $oldpass);
+		if ($expiretime) {
+			$sqlcmd = sprintf("UPDATE user set %s='%s', expires=DATE_ADD(CURDATE(), INTERVAL %d DAY), flags=0 WHERE uid='%s' AND ENCRYPT('%s',password)=password", $field, $c_newpass, $expiretime, $uid, $oldpass);
+		} else {
+			$sqlcmd = sprintf("UPDATE user set %s='%s', flags=0 WHERE uid='%s' AND ENCRYPT('%s',password)=password", $field, $c_newpass, $uid, $oldpass);
+		}
 		$result = SQLQuery($sqlcmd, $id); 
 		$ret = SQLAffectedRows($id);
 	}
