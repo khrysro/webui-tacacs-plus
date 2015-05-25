@@ -1,7 +1,7 @@
 <?php
 $banner = "Web UI";
 $version = "1.5";
-$release = "b7";
+$release = "b9";
 
 $banner_gif = "banner.gif";
 
@@ -38,7 +38,8 @@ $dbuname = array("tacacs","tacacs");
 $debug = 1;
 $demo = 0;
 $pass_size = 8;
-$changetime = 7;
+$changetime = 7;  //Inform when to change
+$expiretime = 45; //Password expiration.  0 means no expiration.
 
 $company_name = "Your Company Name";
 $sitename = ""; //Add your information
