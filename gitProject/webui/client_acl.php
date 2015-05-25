@@ -133,7 +133,7 @@ function _required()
 <?php
 switch ($option) {
    case 1:
-	$network = preg_split('/', $netvalue);
+	$network = preg_split('/\//', $netvalue);
 	if (count($network)==1) $network[1]=32;
 	$result = @SQLQuery("INSERT INTO acl (id, seq, permission, value, value1, submask, type) VALUES ($id, $seq, $permission, '$netvalue', INET_ATON('".$network[0]."'), INET_ATON('".$netmask[$network[1]]."'), 1)", $dbi);
 	$result = @SQLQuery("SELECT seq FROM acl WHERE id=$id AND seq=9999", $dbi);
