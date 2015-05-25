@@ -136,7 +136,7 @@ function _required()
 $where = "";
 switch ($option) {
    case 1:
-	$network = preg_split('/', $ip);
+	$network = preg_split('/\//', $ip);
 	if (count($network)==1) $maskbits = 32;
 	else $maskbits = $network[1];
 	$crypt_enable = "";
