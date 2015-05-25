@@ -142,7 +142,7 @@ switch ($option) {
 	} 
 	break;
    case 2:
-	$network = preg_split('/', $netvalue);
+	$network = preg_split('/\//', $netvalue);
 	if (count($network)==1) $network[1]=32;
 	$result = @SQLQuery("UPDATE acl SET seq=$seq, permission=$permission, value='$netvalue', value1=INET_ATON('".$network[0]."'), submask=INET_ATON('".$netmask[$network[1]]."') WHERE id=$id AND seq=$oldseq AND type=1", $dbi);
 	break;
