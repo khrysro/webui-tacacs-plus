@@ -1,7 +1,7 @@
 <?php
 switch ($option) {
 case 1:
-	if (updatePassword($type, $uid, $oldpass, $newpass, $dbi) > 0) {
+	if (updatePassword($type, $uid, $oldpass, $newpass, $expiretime, $dbi) > 0) {
 		echo "<script language=\"JavaScript\"> alert('Changed password for $uid');";
 	}
 	else {
